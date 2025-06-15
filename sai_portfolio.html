@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Ukarande - Web Developer Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-30px, -30px) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            transform: translateY(-100%);
+        }
+
+        .nav.visible {
+            transform: translateY(0);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+            border: 6px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-text h3 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hobbies {
+            margin-top: 2rem;
+        }
+
+        .hobbies h4 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .hobby-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hobby-tag {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-top-color: var(--primary-color);
+        }
+
+        .skill-category i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.3rem 0;
+            color: var(--text-light);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Resume Section */
+        .resume {
+            text-align: center;
+        }
+
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .resume-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-light);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header" id="home">
+        <div class="header-content">
+            <h1>Sai Ukarande</h1>
+            <p class="tagline">2nd Year CSE Student & Passionate Web Developer</p>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <h2 class="section-title fade-in">About Me</h2>
+        <div class="about-content fade-in">
+            <div class="about-image">
+                <img src="https://drive.google.com/uc?export=view&id=1RpFn5ppfPDJWQgEOaXiOSY71hIbVt4D0" alt="Sai Ukarande" onerror="this.src='https://via.placeholder.com/280x280/667eea/ffffff?text=SU'">
+            </div>
+            <div class="about-text">
+                <h3>Hello! I'm Sai Ukarande</h3>
+                <p>I'm a second-year Computer Science Engineering student with a deep passion for web development and technology. My love for computers drives me to constantly explore new technologies and push the boundaries of what's possible in the digital world.</p>
+                <p>While I'm still early in my journey, my curiosity and dedication fuel my continuous learning. I believe that great developers are made through persistence, creativity, and an unquenchable thirst for knowledge.</p>
+                <div class="hobbies">
+                    <h4>When I'm not coding, you'll find me:</h4>
+                    <div class="hobby-tags">
+                        <span class="hobby-tag"><i class="fas fa-cricket-bat-ball"></i> Cricket</span>
+                        <span class="hobby-tag"><i class="fas fa-shuttle-van"></i> Badminton</span>
+                        <span class="hobby-tag"><i class="fas fa-laptop-code"></i> Exploring Tech</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <h2 class="section-title fade-in">Skills & Expertise</h2>
+        <div class="skills-grid fade-in">
+            <div class="skill-category">
+                <i class="fab fa-html5"></i>
+                <h3>Frontend Development</h3>
+                <ul class="skill-list">
+                    <li>HTML5 & Semantic Markup</li>
+                    <li>CSS3 & Advanced Styling</li>
+                    <li>Responsive Web Design</li>
+                    <li>CSS Grid & Flexbox</li>
+                    <li>CSS Animations</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <i class="fab fa-js-square"></i>
+                <h3>Programming Languages</h3>
+                <ul class="skill-list">
+                    <li>JavaScript (ES6+)</li>
+                    <li>DOM Manipulation</li>
+                    <li>Event Handling</li>
+                    <li>Async Programming</li>
+                    <li>API Integration</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <i class="fas fa-tools"></i>
+                <h3>Tools & Technologies</h3>
+                <ul class="skill-list">
+                    <li>Git & Version Control</li>
+                    <li>VS Code</li>
+                    <li>Browser Developer Tools</li>
+                    <li>NPM & Package Management</li>
+                    <li>Web Performance Optimization</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Web Technologies</h3>
+                <ul class="skill-list">
+                    <li>Progressive Web Apps</li>
+                    <li>Web Accessibility (WCAG)</li>
+                    <li>SEO Best Practices</li>
+                    <li>Cross-browser Compatibility</li>
+                    <li>Mobile-first Design</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <h2 class="section-title fade-in">Featured Project</h2>
+        <div class="project-card fade-in">
+            <div class="project-image">
+                <i class="fas fa-heart-pulse"></i>
+            </div>
+            <div class="project-content">
+                <h3>BloodConnect</h3>
+                <p>A vital web application that bridges the gap between blood banks and users in need. BloodConnect streamlines the process of finding and connecting with blood banks, making it easier for people to access life-saving blood donations when they need them most.</p>
+                <p>This platform focuses on creating a seamless user experience while maintaining the critical functionality needed for emergency situations.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Responsive Design</span>
+                    <span class="tech-tag">Web APIs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="section resume" id="resume">
+        <h2 class="section-title fade-in">Resume</h2>
+        <div class="fade-in">
+            <p style="margin-bottom: 2rem; color: var(--text-light); font-size: 1.1rem;">Download my resume to learn more about my background, skills, and aspirations.</p>
+            <a href="#" class="resume-btn" onclick="alert('Resume download will be available soon!')">
+                <i class="fas fa-download"></i>
+                Download Resume
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <h2 class="section-title fade-in">Get In Touch</h2>
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <a href="mailto:sairajukarande@gmail.com">sairajukarande@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <a href="tel:+917447730935">+91 7447730935</a>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <h3>LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/sai-ukarande" target="_blank">Connect with me</a>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <a href="https://github.com/Saiuk-dev" target="_blank">View my projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/sai-ukarande" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Saiuk-dev" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:sairajukarande@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2025 Sai Ukarande. All rights reserved. Made with ❤️ and lots of ☕</p>
+    </footer>
+
+    <script>
+        // Navbar show/hide on scroll
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                if (scrollTop > lastScrollTop) {
+                    navbar.classList.remove('visible');
+                } else {
+                    navbar.classList.add('visible');
+                }
+            } else {
+                navbar.classList.remove('visible');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.skill-category, .contact-item, .project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add typing effect to tagline
+        const tagline = document.querySelector('.tagline');
+        const originalText = tagline.textContent;
+        tagline.textContent = '';
+        
+        setTimeout(() => {
+            let i = 0;
+            const typing = setInterval(() => {
+                tagline.textContent += originalText.charAt(i);
+                i++;
+                if (i >= originalText.length) {
+                    clearInterval(typing);
+                }
+            }, 50);
+        }, 1000);
+    </script>
+</body>
+</html>
