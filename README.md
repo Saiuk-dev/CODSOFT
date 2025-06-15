@@ -4,6 +4,8 @@ This repository contains a collection of my beginner-friendly frontend projects 
 
 📁 Projects Included
 
+
+ 
  1. 🌐 Personal Portfolio
 A clean and responsive personal portfolio website to showcase:
 - My bio and introduction
@@ -14,6 +16,8 @@ A clean and responsive personal portfolio website to showcase:
 
 
 
+ 
+ 
  2. 🚀 Landing Page
 A modern, responsive landing page design, suitable for product or service promotion. Includes:
 - Hero section with CTA
@@ -22,6 +26,8 @@ A modern, responsive landing page design, suitable for product or service promot
 
 
 
+ 
+ 
  3. 🧮 Basic Calculator
 A simple calculator built using HTML and CSS (no JavaScript), demonstrating layout and styling. Supports basic structure for:
 - Display area
